@@ -1,0 +1,41 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: inmem-key-value
+spec:
+  replicas: 1
+  strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: inmem-key-value
+        version: v1
+    spec:
+      containers:
+      - name: inmem-key-value
+        image: <docker-image-url>
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /live 
+            port: 8080
+          initialDelaySeconds: 3 
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready 
+            port: 8080
+          initialDelaySeconds: 10 
+          periodSeconds: 30
+          timeoutSeconds: 10
+          protocol: TCP
+      imagePullSecrets:
+        - name: <dockerimagepullsecret>
