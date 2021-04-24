@@ -1,6 +1,13 @@
 # Inmemory Key Value Application
 In-memory key-value store HTTP API Service
 
+## Prerequisite
+* Java 11
+* Apache maven
+* Docker
+* Terraform
+* kubectl
+
 ## Build and run
 
 With JDK11+
@@ -71,6 +78,12 @@ application_httpResponse_total{range="3xx"} 0
 application_httpResponse_total{range="4xx"} 0
 application_httpResponse_total{range="5xx"} 0
 
+```
+
+## Running Tests
+```bash
+cd Inmemory-Key-value-Java
+mvn test
 ```
 
 ## Build the Docker Image
