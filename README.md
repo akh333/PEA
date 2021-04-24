@@ -5,6 +5,7 @@ In-memory key-value store HTTP API Service
 
 With JDK11+
 ```bash
+cd Inmemory-Key-value-Java
 mvn package
 java -jar target/inmem-key-value.jar
 ```
@@ -75,6 +76,7 @@ application_httpResponse_total{range="5xx"} 0
 ## Build the Docker Image
 
 ```
+cd Inmemory-Key-value-Java
 docker build -t inmem-key-value .
 ```
 
